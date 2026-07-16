@@ -21,6 +21,32 @@
     el.setAttribute("rel", "noopener");
   });
 
+  // Menu mobile: abre/fecha, trava o scroll do body e fecha com ESC
+  var menuToggle = document.getElementById("menuToggle");
+  var mobileNav = document.getElementById("mobileNav");
+  if (menuToggle && mobileNav) {
+    function closeMenu() {
+      menuToggle.setAttribute("aria-expanded", "false");
+      mobileNav.classList.remove("is-open");
+      document.body.style.overflow = "";
+    }
+    function openMenu() {
+      menuToggle.setAttribute("aria-expanded", "true");
+      mobileNav.classList.add("is-open");
+      document.body.style.overflow = "hidden";
+    }
+    menuToggle.addEventListener("click", function () {
+      var isOpen = menuToggle.getAttribute("aria-expanded") === "true";
+      if (isOpen) closeMenu(); else openMenu();
+    });
+    mobileNav.querySelectorAll("a").forEach(function (link) {
+      link.addEventListener("click", closeMenu);
+    });
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape") closeMenu();
+    });
+  }
+
   // Scroll reveal simples nas seções de conteúdo
   var revealTargets = document.querySelectorAll(
     ".section .section-title, .section .section-lead, .card-row, .model-grid, .model-note, .step-list, .cta-title, .btn-large, .insta-link"

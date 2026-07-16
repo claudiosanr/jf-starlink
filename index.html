@@ -7,7 +7,7 @@
 <meta name="description" content="Venda e locação de kits Starlink em Roraima e em todo o Brasil. Internet via satélite pra fazenda, sítio, obra e comércio onde a fibra não chega.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800;900&family=Work+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
@@ -20,7 +20,7 @@
         <path d="M11 28a9 9 0 0 1 18 0" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/>
         <path d="M6 28a14 14 0 0 1 28 0" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" opacity="0.55"/>
       </svg>
-      <span class="logo-text">JF STARLINK</span>
+      <span class="logo-text">JF <span class="logo-accent">STARLINK</span></span>
     </a>
     <nav class="site-nav">
       <a href="#problema">O problema</a>
@@ -29,47 +29,65 @@
       <a href="#contato">Contato</a>
     </nav>
     <a class="btn btn-primary btn-small" data-wa data-wa-msg="Olá! Vim pela página da JF Starlink e quero saber mais sobre internet via satélite." href="#">Chamar no WhatsApp</a>
+    <button class="menu-toggle" id="menuToggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="mobileNav">
+      <svg class="icon-menu" viewBox="0 0 24 24" aria-hidden="true"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      <svg class="icon-close" viewBox="0 0 24 24" aria-hidden="true"><line x1="5" y1="5" x2="19" y2="19"/><line x1="19" y1="5" x2="5" y2="19"/></svg>
+    </button>
   </div>
 </header>
+
+<div class="mobile-nav" id="mobileNav">
+  <nav class="mobile-nav-links">
+    <a href="#problema">O problema</a>
+    <a href="#modelos">Venda e locação</a>
+    <a href="#porque">Por que a JF</a>
+    <a href="#contato">Contato</a>
+  </nav>
+  <a class="btn btn-primary btn-large mobile-nav-cta" data-wa data-wa-msg="Olá! Vim pela página da JF Starlink e quero saber mais sobre internet via satélite." href="#">
+    Falar no WhatsApp
+    <span class="arrow" aria-hidden="true">→</span>
+  </a>
+</div>
 
 <main id="topo">
 
   <section class="hero">
     <div class="hero-scene" aria-hidden="true">
       <canvas class="starfield"></canvas>
-      <div class="hero-glow hero-glow-a"></div>
-      <div class="hero-glow hero-glow-b"></div>
-      <div class="signal-beam"></div>
-      <svg class="horizon" viewBox="0 0 1440 340" preserveAspectRatio="none">
-        <polyline class="horizon-line" points="0,260 140,255 260,268 420,250 560,264 720,244 860,262 1020,252 1180,266 1320,250 1440,258" fill="none"/>
-        <path class="horizon-fill" d="M0,260 140,255 260,268 420,250 560,264 720,244 860,262 1020,252 1180,266 1320,250 1440,258 1440,340 0,340 Z"/>
-        <g class="dish" transform="translate(1120,196)">
-          <line x1="0" y1="0" x2="0" y2="54" stroke="currentColor" stroke-width="3"/>
-          <ellipse cx="0" cy="54" rx="14" ry="4" fill="currentColor" opacity="0.5"/>
-          <path d="M-26,-6 C-26,-24 26,-24 26,-6 C10,-14 -10,-14 -26,-6 Z" fill="currentColor"/>
-        </g>
-      </svg>
+      <div class="aurora aurora-a"></div>
+      <div class="aurora aurora-b"></div>
     </div>
-    <div class="wrap hero-content">
-      <div class="hero-main">
-        <p class="eyebrow">De Roraima pra todo o Brasil</p>
-        <h1 class="hero-title">Internet em<br>qualquer lugar.</h1>
-        <p class="hero-sub">Onde a fibra não chega e o sinal de celular cai, a JF&nbsp;Starlink leva conexão de verdade pra fazenda, sítio, obra ou comércio fora da área urbana, em qualquer estado do Brasil.</p>
+    <div class="wrap hero-grid">
+      <div class="hero-content">
+        <span class="badge">Antenas Starlink <span class="dot-sep">·</span> venda e locação</span>
+        <h1 class="hero-title">Internet rápida.<br>Onde a fibra <span class="hero-highlight">não chega.</span></h1>
+        <p class="hero-sub">Antena Starlink com instalação rápida e suporte direto com a JF. Peça a sua e fique online em poucos dias, mesmo na zona rural.</p>
         <div class="hero-actions">
-          <a class="btn btn-primary btn-arrow" data-wa data-wa-msg="Olá! Vim pela página da JF Starlink e quero saber mais sobre internet via satélite." href="#">Falar no WhatsApp agora<span class="arrow" aria-hidden="true">→</span></a>
-          <a class="btn btn-ghost" href="#como-funciona">Ver como funciona</a>
+          <a class="btn btn-primary btn-arrow" data-wa data-wa-msg="Olá! Vim pela página da JF Starlink e quero saber mais sobre internet via satélite." href="#">Falar no WhatsApp<span class="arrow" aria-hidden="true">→</span></a>
+          <a class="btn btn-ghost" href="#modelos">Ver modelos</a>
         </div>
-        <p class="hero-trust">Fala direto com quem instala, sem intermediário.</p>
+        <div class="hero-features">
+          <div class="hero-feature">
+            <svg class="hf-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="19" r="1.4" fill="currentColor" stroke="none"/><path d="M8 15.5a5.6 5.6 0 0 1 8 0"/><path d="M4.5 12a11 11 0 0 1 15 0"/></svg>
+            Funciona em qualquer lugar
+          </div>
+          <div class="hero-feature">
+            <svg class="hf-icon" viewBox="0 0 24 24" aria-hidden="true"><polygon points="13 2 4 14 11 14 10 22 19 10 12 10 13 2"/></svg>
+            Instalação rápida, sem obra
+          </div>
+          <div class="hero-feature">
+            <svg class="hf-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v11H9l-4 4V5Z"/></svg>
+            Suporte direto no WhatsApp
+          </div>
+        </div>
       </div>
-      <div class="hero-stats">
-        <a class="hero-stat" data-wa data-wa-msg="Olá! Vim pela página da JF Starlink e quero saber mais sobre internet via satélite." href="#">
-          <p class="hero-stat-value">(95) 98105-6184</p>
-          <p class="hero-stat-label">Fala direto no WhatsApp</p>
-        </a>
-        <a class="hero-stat" href="https://www.instagram.com/jfstarlink_rr/" target="_blank" rel="noopener">
-          <p class="hero-stat-value">@jfstarlink_rr</p>
-          <p class="hero-stat-label">Acompanha no Instagram</p>
-        </a>
+      <div class="hero-visual" aria-hidden="true">
+        <span class="signal-ring ring-1"></span>
+        <span class="signal-ring ring-2"></span>
+        <span class="signal-ring ring-3"></span>
+        <div class="signal-core">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="19" r="1.4" fill="currentColor" stroke="none"/><path d="M8 15.5a5.6 5.6 0 0 1 8 0"/><path d="M4.5 12a11 11 0 0 1 15 0"/></svg>
+        </div>
       </div>
     </div>
   </section>
@@ -83,14 +101,17 @@
       <p class="section-lead">Em Roraima, quem tá fora da malha urbana conhece o problema: provedor não chega, sinal de celular oscila, e o negócio ou a propriedade ficam reféns de uma conexão que não dá pra confiar.</p>
       <div class="card-row">
         <div class="pain-card">
+          <span class="card-dot" aria-hidden="true"></span>
           <p class="pain-title">Sem provedor até a propriedade</p>
           <p class="pain-text">Fazenda, sítio ou obra fora do perímetro urbano. A fibra simplesmente não estica até lá.</p>
         </div>
         <div class="pain-card">
+          <span class="card-dot" aria-hidden="true"></span>
           <p class="pain-title">Sinal de celular fraco</p>
           <p class="pain-text">Roteador com chip de operadora cai toda hora, trava vídeo, derruba ligação.</p>
         </div>
         <div class="pain-card">
+          <span class="card-dot" aria-hidden="true"></span>
           <p class="pain-title">Internet lenta trava o negócio</p>
           <p class="pain-text">Maquininha de cartão, câmera de segurança, sistema de gestão. Nada disso funciona direito sem conexão estável.</p>
         </div>
@@ -107,14 +128,17 @@
       <p class="section-lead">A antena Starlink capta sinal direto de satélite. Não depende da infraestrutura que falta na sua região, só precisa de vista aberta pro céu.</p>
       <div class="card-row">
         <div class="feature-card">
+          <span class="card-dot" aria-hidden="true"></span>
           <p class="feature-title">Instalação simples</p>
           <p class="feature-text">Antena autoinstalável, sem obra e sem técnico de operadora.</p>
         </div>
         <div class="feature-card">
+          <span class="card-dot" aria-hidden="true"></span>
           <p class="feature-title">Funciona em qualquer lugar</p>
           <p class="feature-text">Se tem céu aberto acima, tem sinal: fazenda, sítio, canteiro de obra.</p>
         </div>
         <div class="feature-card">
+          <span class="card-dot" aria-hidden="true"></span>
           <p class="feature-title">Estável pro dia a dia</p>
           <p class="feature-text">Dá pra trabalhar, usar sistema de gestão, câmera e streaming sem travar.</p>
         </div>
@@ -185,14 +209,17 @@
       <h2 class="section-title">Atendimento de quem entende do assunto,<br>não de central de call center.</h2>
       <div class="card-row">
         <div class="why-card">
+          <span class="card-dot" aria-hidden="true"></span>
           <p class="why-title">Direto no WhatsApp</p>
           <p class="why-text">Fala com quem realmente monta e instala o kit, sem fila de atendimento.</p>
         </div>
         <div class="why-card">
+          <span class="card-dot" aria-hidden="true"></span>
           <p class="why-title">Raiz em Roraima, alcance nacional</p>
           <p class="why-text">Começou atendendo fazenda, sítio e obra em Roraima. Hoje manda kit pra qualquer estado do Brasil.</p>
         </div>
         <div class="why-card">
+          <span class="card-dot" aria-hidden="true"></span>
           <p class="why-title">Suporte depois da instalação</p>
           <p class="why-text">O atendimento não acaba na entrega do kit.</p>
         </div>
