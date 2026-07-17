@@ -520,6 +520,13 @@ a { color: inherit; }
 }
 .model-card:hover { border-color: var(--border-strong); transform: translateY(-2px); }
 
+.model-icon {
+  width: 84px;
+  height: auto;
+  display: block;
+  margin-bottom: 24px;
+}
+
 .model-tag {
   font-family: var(--font-mono);
   font-size: 12px;
