@@ -24,6 +24,31 @@
 </head>
 <body>
 
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <linearGradient id="panelFill" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#5b6f92"/>
+      <stop offset="45%" stop-color="#1c2537"/>
+      <stop offset="100%" stop-color="#060810"/>
+    </linearGradient>
+    <linearGradient id="rimLight" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#aecaff" stop-opacity="0.95"/>
+      <stop offset="30%" stop-color="#aecaff" stop-opacity="0.2"/>
+      <stop offset="100%" stop-color="#aecaff" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="legGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#3d4a63"/>
+      <stop offset="100%" stop-color="#0b0e15"/>
+    </linearGradient>
+    <pattern id="dotGrid" width="15" height="15" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1.1" fill="#ffffff"/>
+    </pattern>
+    <clipPath id="panelClip">
+      <rect x="150" y="180" width="300" height="120" rx="60"/>
+    </clipPath>
+  </defs>
+</svg>
+
 <header class="site-header">
   <div class="wrap header-inner">
     <a href="#topo" class="logo">
@@ -65,50 +90,26 @@
 
   <section class="hero">
     <div class="hero-scene" aria-hidden="true">
+      <canvas class="beam-field"></canvas>
+      <canvas class="grain"></canvas>
       <canvas class="starfield"></canvas>
-      <div class="aurora aurora-a"></div>
-      <div class="aurora aurora-b"></div>
-      <svg class="hero-dish" viewBox="0 0 600 480" preserveAspectRatio="xMidYMid meet">
-        <defs>
-          <linearGradient id="panelFill" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0%" stop-color="#5b6f92"/>
-            <stop offset="45%" stop-color="#1c2537"/>
-            <stop offset="100%" stop-color="#060810"/>
-          </linearGradient>
-          <linearGradient id="rimLight" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0%" stop-color="#aecaff" stop-opacity="0.95"/>
-            <stop offset="30%" stop-color="#aecaff" stop-opacity="0.2"/>
-            <stop offset="100%" stop-color="#aecaff" stop-opacity="0"/>
-          </linearGradient>
-          <linearGradient id="legGrad" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0%" stop-color="#3d4a63"/>
-            <stop offset="100%" stop-color="#0b0e15"/>
-          </linearGradient>
-          <pattern id="dotGrid" width="15" height="15" patternUnits="userSpaceOnUse">
-            <circle cx="2" cy="2" r="1.1" fill="#ffffff"/>
-          </pattern>
-          <clipPath id="panelClip">
-            <rect x="150" y="180" width="300" height="120" rx="60"/>
-          </clipPath>
-        </defs>
-        <circle class="dish-ring r1" cx="300" cy="240" r="100"/>
-        <circle class="dish-ring r2" cx="300" cy="240" r="100"/>
-        <circle class="dish-ring r3" cx="300" cy="240" r="100"/>
-        <path class="dish-wave" d="M195 120 A140 140 0 0 1 405 120"/>
-        <path class="dish-wave" d="M222 145 A102 102 0 0 1 378 145"/>
-        <g transform="rotate(-30 300 240)">
-          <path d="M300 300 Q282 344 258 420" stroke="url(#legGrad)" stroke-width="13" stroke-linecap="round" fill="none"/>
-          <ellipse cx="255" cy="424" rx="30" ry="7" fill="rgba(0,0,0,0.45)"/>
-          <rect x="150" y="180" width="300" height="120" rx="60" fill="url(#panelFill)"/>
-          <rect x="150" y="180" width="300" height="120" rx="60" fill="url(#dotGrid)" opacity="0.28" clip-path="url(#panelClip)"/>
-          <rect x="150" y="180" width="300" height="120" rx="60" fill="none" stroke="url(#rimLight)" stroke-width="3"/>
-        </g>
-      </svg>
     </div>
     <div class="wrap">
       <div class="hero-content">
-        <span class="badge">Fornecedor Starlink <span class="dot-sep">·</span> atacado e revenda</span>
-        <h1 class="hero-title">Seu fornecedor de<br>produtos Starlink <span class="hero-highlight">para revenda.</span></h1>
+        <a href="#atacado" class="badge">
+          <span>Fornecedor Starlink <span class="dot-sep">·</span> atacado e revenda</span>
+          <span class="badge-arrow" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </span>
+        </a>
+        <h1 class="hero-title">Seu fornecedor de<br>produtos Starlink pra
+          <span class="cycle-wrap">
+            <span class="cycle-word is-active">revenda.</span>
+            <span class="cycle-word">lojistas.</span>
+            <span class="cycle-word">revendedores.</span>
+            <span class="cycle-word">distribuidores.</span>
+          </span>
+        </h1>
         <p class="hero-sub">A JF Starlink abastece lojistas, revendedores e distribuidores com produtos Starlink pra comercialização, no Brasil e em outros países. Compra em quantidade, negociação direta, sem intermediário.</p>
         <div class="hero-actions">
           <a class="btn btn-primary btn-arrow" data-wa data-wa-msg="Olá! Quero solicitar uma cotação para compra no atacado de produtos Starlink." href="#">Solicitar cotação<span class="arrow" aria-hidden="true">→</span></a>
