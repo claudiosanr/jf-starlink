@@ -40,7 +40,7 @@
       <stop offset="0%" stop-color="#3d4a63"/>
       <stop offset="100%" stop-color="#0b0e15"/>
     </linearGradient>
-    <radialGradient id="miniGlow" cx="50%" cy="42%" r="65%">
+    <radialGradient id="catalogGlow" cx="50%" cy="42%" r="65%">
       <stop offset="0%" stop-color="#1e6feb" stop-opacity="0.35"/>
       <stop offset="100%" stop-color="#1e6feb" stop-opacity="0"/>
     </radialGradient>
@@ -177,7 +177,7 @@
             <svg viewBox="0 0 300 300" aria-hidden="true">
               <rect x="0" y="0" width="300" height="300" fill="#05070c"/>
               <rect x="0" y="0" width="300" height="300" fill="url(#dotGrid)" opacity="0.4"/>
-              <circle cx="150" cy="120" r="118" fill="url(#miniGlow)"/>
+              <circle cx="150" cy="120" r="118" fill="url(#catalogGlow)"/>
               <g stroke="#4fa6ff" fill="none" stroke-linecap="round">
                 <path d="M98 76a74 74 0 0 1 110 0" stroke-width="2.5" opacity="0.28"/>
                 <path d="M114 90a50 50 0 0 1 80 0" stroke-width="2.5" opacity="0.5"/>
@@ -198,8 +198,23 @@
           <a class="btn btn-outline" data-wa data-wa-msg="Olá! Quero solicitar uma cotação pra compra no atacado do Starlink Mini." href="#">Solicitar cotação</a>
         </div>
         <div class="model-card has-photo">
-          <div class="model-photo">
-            <img src="assets/starlink-standard.webp" alt="Antena Starlink Standard instalada ao ar livre, painel retangular sobre suporte." loading="lazy" width="760" height="760">
+          <div class="model-photo model-illustration">
+            <svg viewBox="0 0 300 300" aria-hidden="true">
+              <rect x="0" y="0" width="300" height="300" fill="#05070c"/>
+              <rect x="0" y="0" width="300" height="300" fill="url(#dotGrid)" opacity="0.4"/>
+              <circle cx="150" cy="126" r="122" fill="url(#catalogGlow)"/>
+              <g stroke="#4fa6ff" fill="none" stroke-linecap="round">
+                <path d="M92 82a82 82 0 0 1 122 0" stroke-width="2.5" opacity="0.28"/>
+                <path d="M110 98a56 56 0 0 1 86 0" stroke-width="2.5" opacity="0.5"/>
+              </g>
+              <g transform="rotate(-18 150 136)">
+                <path d="M128 190 L100 244" stroke="url(#legGrad)" stroke-width="9" stroke-linecap="round" fill="none"/>
+                <path d="M172 190 L200 244" stroke="url(#legGrad)" stroke-width="9" stroke-linecap="round" fill="none"/>
+                <rect x="46" y="80" width="208" height="110" rx="15" fill="url(#panelFill)"/>
+                <rect x="46" y="80" width="208" height="110" rx="15" fill="none" stroke="url(#rimLight)" stroke-width="2.5"/>
+                <path d="M64 106 L160 80" stroke="#ffffff" stroke-width="11" stroke-linecap="round" opacity="0.1"/>
+              </g>
+            </svg>
           </div>
           <p class="model-tag">Starlink Standard</p>
           <p class="model-headline">Painel de maior alcance.</p>
