@@ -80,12 +80,40 @@
     revealTargets.forEach(function (el) { el.classList.add("is-visible"); });
   }
 
+  // Controle central de pausa: as três animações de canvas da hero só
+  // rodam com a hero visível e a aba em primeiro plano. Evita gastar
+  // CPU/bateria depois que o usuário rolou pra frente (era a principal
+  // causa da página ficar pesada, já que os três loops continuavam
+  // rodando pra sempre, mesmo com a hero fora da tela).
+  var heroSection = document.querySelector(".hero");
+  var heroVisible = true;
+  var animHandlers = [];
+  function registerAnim(handlers) { animHandlers.push(handlers); }
+  var animsRunning = true;
+  function syncAnimState() {
+    var shouldRun = heroVisible && !document.hidden;
+    if (shouldRun === animsRunning) return;
+    animsRunning = shouldRun;
+    animHandlers.forEach(function (h) { shouldRun ? h.resume() : h.pause(); });
+  }
+  document.addEventListener("visibilitychange", syncAnimState);
+  if (heroSection && "IntersectionObserver" in window) {
+    new IntersectionObserver(
+      function (entries) {
+        heroVisible = entries[0].isIntersecting;
+        syncAnimState();
+      },
+      { threshold: 0 }
+    ).observe(heroSection);
+  }
+
   // Campo de estrelas discreto no hero (pausa se o usuário preferir menos movimento)
   var canvas = document.querySelector(".starfield");
   if (canvas) {
     var ctx = canvas.getContext("2d");
     var stars = [];
     var dpr = Math.min(window.devicePixelRatio || 1, 2);
+    var starfieldRafId = null;
 
     function resize() {
       var rect = canvas.parentElement.getBoundingClientRect();
@@ -93,7 +121,7 @@
       canvas.height = rect.height * dpr;
       canvas.style.width = rect.width + "px";
       canvas.style.height = rect.height + "px";
-      var count = Math.round((rect.width * rect.height) / 9000);
+      var count = Math.round((rect.width * rect.height) / 14000);
       stars = [];
       for (var i = 0; i < count; i++) {
         stars.push({
@@ -117,12 +145,23 @@
         ctx.fill();
       });
       ctx.globalAlpha = 1;
-      if (!reduceMotion) requestAnimationFrame(draw);
+      starfieldRafId = requestAnimationFrame(draw);
+    }
+
+    function startStarfield() {
+      if (starfieldRafId != null || reduceMotion) return;
+      starfieldRafId = requestAnimationFrame(draw);
+    }
+    function stopStarfield() {
+      if (starfieldRafId == null) return;
+      cancelAnimationFrame(starfieldRafId);
+      starfieldRafId = null;
     }
 
     resize();
     window.addEventListener("resize", resize);
-    requestAnimationFrame(draw);
+    startStarfield();
+    registerAnim({ pause: stopStarfield, resume: startStarfield });
   }
 
   // Feixes de luz animados no fundo da hero
@@ -132,7 +171,8 @@
     var beams = [];
     var bdpr = Math.min(window.devicePixelRatio || 1, 2);
     var LAYERS = 3;
-    var BEAMS_PER_LAYER = 4;
+    var BEAMS_PER_LAYER = 3;
+    var beamRafId = null;
 
     function makeBeam(w, h, layer) {
       return {
@@ -163,6 +203,11 @@
       }
     }
 
+    // Sem ctx.filter aqui de propósito: um blur de Canvas2D recalculado a
+    // cada frame pra cada feixe era o maior custo de CPU/GPU da página
+    // (12 feixes × blur gaussiano em retângulos grandes, todo frame). O
+    // gradiente já entra e sai em 0 de opacidade, o que dá suavidade
+    // visual parecida sem repetir esse trabalho a cada frame.
     function drawBeam(b) {
       bctx.save();
       bctx.translate(b.x, b.y);
@@ -170,12 +215,11 @@
       var pulseOpacity = Math.min(1, b.opacity * (0.8 + Math.sin(b.pulse) * 0.4));
       var grad = bctx.createLinearGradient(0, 0, 0, b.length);
       grad.addColorStop(0, "rgba(79,166,255,0)");
-      grad.addColorStop(0.2, "rgba(79,166,255," + pulseOpacity * 0.5 + ")");
+      grad.addColorStop(0.15, "rgba(79,166,255," + pulseOpacity * 0.35 + ")");
       grad.addColorStop(0.5, "rgba(79,166,255," + pulseOpacity + ")");
-      grad.addColorStop(0.8, "rgba(79,166,255," + pulseOpacity * 0.5 + ")");
+      grad.addColorStop(0.85, "rgba(79,166,255," + pulseOpacity * 0.35 + ")");
       grad.addColorStop(1, "rgba(79,166,255,0)");
       bctx.fillStyle = grad;
-      bctx.filter = "blur(" + (2 + b.layer * 2) + "px)";
       bctx.fillRect(-b.width / 2, 0, b.width, b.length);
       bctx.restore();
     }
@@ -191,7 +235,17 @@
         }
         drawBeam(b);
       });
-      requestAnimationFrame(beamDraw);
+      beamRafId = requestAnimationFrame(beamDraw);
+    }
+
+    function startBeams() {
+      if (beamRafId != null || reduceMotion) return;
+      beamRafId = requestAnimationFrame(beamDraw);
+    }
+    function stopBeams() {
+      if (beamRafId == null) return;
+      cancelAnimationFrame(beamRafId);
+      beamRafId = null;
     }
 
     beamResize();
@@ -199,7 +253,8 @@
     if (reduceMotion) {
       beams.forEach(drawBeam);
     } else {
-      requestAnimationFrame(beamDraw);
+      startBeams();
+      registerAnim({ pause: stopBeams, resume: startBeams });
     }
   }
 
@@ -213,6 +268,7 @@
     tile.width = TILE;
     tile.height = TILE;
     var tctx = tile.getContext("2d");
+    var grainIntervalId = null;
 
     function grainResize() {
       var rect = grainCanvas.parentElement.getBoundingClientRect();
@@ -237,10 +293,21 @@
       gctx.fillRect(0, 0, grainCanvas.width, grainCanvas.height);
     }
 
+    function startGrain() {
+      if (grainIntervalId != null) return;
+      paintGrain();
+      grainIntervalId = setInterval(paintGrain, 220);
+    }
+    function stopGrain() {
+      if (grainIntervalId == null) return;
+      clearInterval(grainIntervalId);
+      grainIntervalId = null;
+    }
+
     grainResize();
     window.addEventListener("resize", grainResize);
-    paintGrain();
-    setInterval(paintGrain, 140);
+    startGrain();
+    registerAnim({ pause: stopGrain, resume: startGrain });
   }
 
   // Palavra girando no título da hero: revenda / lojistas / revendedores / distribuidores

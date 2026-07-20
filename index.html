@@ -40,6 +40,10 @@
       <stop offset="0%" stop-color="#3d4a63"/>
       <stop offset="100%" stop-color="#0b0e15"/>
     </linearGradient>
+    <radialGradient id="miniGlow" cx="50%" cy="42%" r="65%">
+      <stop offset="0%" stop-color="#1e6feb" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#1e6feb" stop-opacity="0"/>
+    </radialGradient>
     <pattern id="dotGrid" width="15" height="15" patternUnits="userSpaceOnUse">
       <circle cx="2" cy="2" r="1.1" fill="#ffffff"/>
     </pattern>
@@ -168,28 +172,35 @@
       <h2 class="section-title">Produtos Starlink disponíveis pra revenda.</h2>
       <p class="section-lead">Consulte disponibilidade e condições de compra em quantidade pra cada modelo.</p>
       <div class="model-grid">
-        <div class="model-card">
-          <svg class="model-icon" viewBox="0 0 200 150" aria-hidden="true">
-            <g transform="rotate(-16 100 95)">
-              <path d="M100 122 Q94 138 87 152" stroke="url(#legGrad)" stroke-width="7" stroke-linecap="round" fill="none"/>
-              <rect x="58" y="72" width="84" height="66" rx="20" fill="url(#panelFill)"/>
-              <rect x="58" y="72" width="84" height="66" rx="20" fill="none" stroke="url(#rimLight)" stroke-width="2"/>
-            </g>
-          </svg>
+        <div class="model-card has-photo">
+          <div class="model-photo model-illustration">
+            <svg viewBox="0 0 300 300" aria-hidden="true">
+              <rect x="0" y="0" width="300" height="300" fill="#05070c"/>
+              <rect x="0" y="0" width="300" height="300" fill="url(#dotGrid)" opacity="0.4"/>
+              <circle cx="150" cy="120" r="118" fill="url(#miniGlow)"/>
+              <g stroke="#4fa6ff" fill="none" stroke-linecap="round">
+                <path d="M98 76a74 74 0 0 1 110 0" stroke-width="2.5" opacity="0.28"/>
+                <path d="M114 90a50 50 0 0 1 80 0" stroke-width="2.5" opacity="0.5"/>
+              </g>
+              <g transform="rotate(-20 150 130)">
+                <path d="M132 178 L108 226" stroke="url(#legGrad)" stroke-width="9" stroke-linecap="round" fill="none"/>
+                <path d="M168 178 L192 226" stroke="url(#legGrad)" stroke-width="9" stroke-linecap="round" fill="none"/>
+                <rect x="62" y="84" width="176" height="96" rx="13" fill="url(#panelFill)"/>
+                <rect x="62" y="84" width="176" height="96" rx="13" fill="none" stroke="url(#rimLight)" stroke-width="2.5"/>
+                <path d="M78 106 L155 84" stroke="#ffffff" stroke-width="10" stroke-linecap="round" opacity="0.1"/>
+              </g>
+            </svg>
+          </div>
           <p class="model-tag">Starlink Mini</p>
           <p class="model-headline">Compacto e tudo-em-um.</p>
           <p class="model-text">Antena e roteador integrados num kit só, fácil de transportar e instalar. O modelo mais procurado por quem revende pra uso móvel ou pontual.</p>
           <p class="model-availability">Consulte disponibilidade</p>
           <a class="btn btn-outline" data-wa data-wa-msg="Olá! Quero solicitar uma cotação pra compra no atacado do Starlink Mini." href="#">Solicitar cotação</a>
         </div>
-        <div class="model-card">
-          <svg class="model-icon" viewBox="0 0 200 150" aria-hidden="true">
-            <g transform="rotate(-24 100 80)">
-              <path d="M100 96 Q88 122 74 150" stroke="url(#legGrad)" stroke-width="7" stroke-linecap="round" fill="none"/>
-              <rect x="38" y="58" width="124" height="44" rx="22" fill="url(#panelFill)"/>
-              <rect x="38" y="58" width="124" height="44" rx="22" fill="none" stroke="url(#rimLight)" stroke-width="2"/>
-            </g>
-          </svg>
+        <div class="model-card has-photo">
+          <div class="model-photo">
+            <img src="assets/starlink-standard.webp" alt="Antena Starlink Standard instalada ao ar livre, painel retangular sobre suporte." loading="lazy" width="760" height="760">
+          </div>
           <p class="model-tag">Starlink Standard</p>
           <p class="model-headline">Painel de maior alcance.</p>
           <p class="model-text">Antena de maior porte, indicada pra instalação fixa. Roteador em separado, desempenho pensado pra uso contínuo.</p>

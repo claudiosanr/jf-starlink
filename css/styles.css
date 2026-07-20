@@ -191,8 +191,12 @@ a { color: inherit; }
   padding-bottom: 10px;
   padding-left: 18px;
   padding-right: 6px;
-  background: color-mix(in srgb, var(--bg) 88%, transparent);
-  backdrop-filter: blur(14px);
+  /* Sólido em vez de backdrop-filter: blur() de propósito. Um blur do
+     fundo recalculado a cada frame de scroll é caro (o compositor tem
+     que borrar a camada de baixo toda vez que o conteúdo se move), e
+     é justamente o tipo de custo que fica mais perceptível durante a
+     rolagem em si, não só no load da página. */
+  background: color-mix(in srgb, var(--bg) 97%, transparent);
   border: 1px solid var(--border);
   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
 }
@@ -540,6 +544,7 @@ a { color: inherit; }
   border: 1px solid var(--border);
   border-radius: 20px;
   padding: 40px 36px;
+  overflow: hidden;
   transition: border-color 0.2s ease, transform 0.2s ease;
 }
 .model-card:hover { border-color: var(--border-strong); transform: translateY(-2px); }
@@ -549,6 +554,24 @@ a { color: inherit; }
   height: auto;
   display: block;
   margin-bottom: 24px;
+}
+
+.model-card.has-photo { padding-top: 0; }
+.model-photo {
+  margin: 0 -36px 24px;
+  aspect-ratio: 1 / 1;
+  background: #05070c;
+}
+.model-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.model-illustration svg {
+  width: 100%;
+  height: 100%;
+  display: block;
 }
 
 .model-tag {
